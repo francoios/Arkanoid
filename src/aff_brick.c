@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:02:40 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 17:28:52 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 18:32:41 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void		get_brick(float y, float x, char c, float f, float e)
 	if (c == '1')
 	{
 		glBegin(GL_QUADS);
-		printf("x== %f y== %f\n", x, y);
-		printf("e== %f f== %f\n", e, f);
 		glColor3f(0.f, 0.f, 0.f);
 		glVertex2d(-x, -y);
 		glColor3f(0.f, 0.f, 0.f);
@@ -32,8 +30,6 @@ void		get_brick(float y, float x, char c, float f, float e)
 	if (c == '2')
 	{
 		glBegin(GL_QUADS);
-		printf("x== %f y== %f\n", x, y);
-		printf("e== %f f== %f\n", e, f);
 		glColor3f(0.f, 1.f, 0.f);
 		glVertex2d(-x, -y);
 		glColor3f(0.f, 1.f, 0.f);
@@ -47,8 +43,6 @@ void		get_brick(float y, float x, char c, float f, float e)
 	if (c == '3')
 	{
 		glBegin(GL_QUADS);
-		printf("x== %f y== %f\n", x, y);
-		printf("e== %f f== %f\n", e, f);
 		glColor3f(1.f, 1.f, 0.f);
 		glVertex2d(-x, -y);
 		glColor3f(1.f, 1.f, 0.f);
@@ -62,8 +56,6 @@ void		get_brick(float y, float x, char c, float f, float e)
 	if (c == '4')
 	{
 		glBegin(GL_QUADS);
-		printf("x== %f y== %f\n", x, y);
-		printf("e== %f f== %f\n", e, f);
 		glColor3f(0.f, 1.f, 1.f);
 		glVertex2d(-x, -y);
 		glColor3f(0.f, 1.f, 1.f);
