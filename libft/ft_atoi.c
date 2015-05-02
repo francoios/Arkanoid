@@ -6,11 +6,11 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/15 17:16:58 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 13:56:37 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 09:57:04 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 static int	ft_ispace(int c)
 {

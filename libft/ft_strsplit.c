@@ -6,11 +6,11 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:18:50 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 14:03:14 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 11:06:19 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 static size_t			ft_wordscount(char *s, char c)
 {

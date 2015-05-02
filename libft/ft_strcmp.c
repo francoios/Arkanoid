@@ -6,11 +6,11 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 14:26:07 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 14:00:43 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 11:04:47 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int			ft_strcmp(const char *s1, const char *s2)
 {

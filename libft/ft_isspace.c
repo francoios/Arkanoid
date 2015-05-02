@@ -6,11 +6,11 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 17:58:28 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 13:57:25 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 11:02:37 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int			ft_isspace(int c)
 {

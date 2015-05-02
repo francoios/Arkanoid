@@ -6,11 +6,11 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 10:14:10 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 14:01:59 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 11:05:40 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char		*ft_strncat(char *s1, const char *s2, size_t n)
 {

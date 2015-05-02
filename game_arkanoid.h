@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnequ.c                                       :+:      :+:    :+:   */
+/*   game_arkanoid.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 11:16:48 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 11:05:57 by frcugy           ###   ########.fr       */
+/*   Created: 2015/05/02 09:56:04 by frcugy            #+#    #+#             */
+/*   Updated: 2015/05/02 11:01:14 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
 
-int			ft_strnequ(char const *s1, char const *s2, size_t n)
-{
-	size_t	i;
+#ifndef ARKANOID_H
+# define ARKANOID_H
+# include "includes/libft.h"
 
-	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (0);
-	if (n == 0)
-		return (1);
-	while (i < n - 1)
-	{
-		if (s1[i] != s2[i])
-			return (0);
-		i++;
-	}
-	if ((s2[i] || s1[i]) && s1[i] != s2[i])
-		return (0);
-	return (1);
-}
+#endif

@@ -6,11 +6,11 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/06 18:24:14 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 13:57:31 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 11:02:40 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int			ft_isxdigit(int c)
 {

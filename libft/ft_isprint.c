@@ -6,11 +6,11 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 15:15:46 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 13:57:18 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 11:02:32 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int			ft_isprint(int c)
 {
