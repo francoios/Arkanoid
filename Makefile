@@ -6,7 +6,7 @@
 #    By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/27 20:27:42 by tdemay            #+#    #+#              #
-#    Updated: 2015/05/02 11:32:24 by frcugy           ###   ########.fr        #
+#    Updated: 2015/05/02 14:58:25 by frcugy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,14 @@ NAMEBASE	=	$(shell basename $(NAME))
 
 CC			=	gcc
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=
 
 LIBS		=	-I ~/glfw-3.1.1/include -framework Cocoa -framework OpenGl -framework IOKit -framework CoreVideo
 
 SRCBASE		=	\
-				src/main.c
+				src/main.c \
+				src/get_map.c \
+				src/aff_brick.c
 
 SRCS		=	$(SRCBASE)
 
