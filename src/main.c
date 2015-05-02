@@ -6,13 +6,15 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:49:20 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 21:30:07 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 22:59:35 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_arkanoid.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
+
 
 t_coord pos;
 static void error_callback(int error, const char* description)
@@ -35,14 +37,87 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     }
 }
 
+void  drawCircle(float x1, float y1)
+{
+    float x2,y2;
+    float angle;
+    double radius = 0.020;
+
+    glColor3f(0, 0, 0);
+
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(x1,y1);
+
+    for (angle=0.0f; angle < 2 * 3.14257; angle += 0.001)
+    {
+        x2 = x1 + sin(angle)*radius;
+        y2 = y1 + cos(angle)*radius;
+        glVertex2f(x2,y2);
+    }
+}
+
+typedef struct   s_circlePos
+{
+    float       xPos;
+    float       yPos;
+    float       xVec;
+    float       yVec;
+    float       rad;
+}               t_circlePos;
+
+t_circlePos     moveCircle(t_circlePos *movement)
+{
+    printf("before x circle = %f\n", movement->xPos);
+
+    movement->xPos = movement->xPos + movement->xVec;
+
+    printf("after x circle = %f\n", movement->xPos);
+    printf("after x circle = %f\n", movement->xPos);
+
+    movement->yPos = movement->yPos + movement->yVec;
+
+    drawCircle(movement->xPos, movement->yPos);
+    return (*movement);
+}
+
+t_circlePos     calculColision(t_circlePos *movement, int direction)
+{
+    if (direction == 1)
+    {
+        movement->xVec = movement->xVec * -1;
+    }
+    if (direction == 2)
+    {
+        movement->yVec = movement->yVec * -1;
+    }
+    if (direction == 3)
+    {
+        movement->xVec = movement->xVec * -1;
+    }
+    if (direction == 4)
+    {
+        movement->yVec = movement->yVec * -1;
+    }
+    return (*movement);
+}
+
+
 int main(void)
 {
     int i;
     char **tab;
+    t_circlePos    movement;
+
+    movement.xPos = 0.f;
+    movement.yPos = -0.7f;
+    movement.xVec = 0.002f;
+    movement.yVec = 0.002f;
 
     i = 0;
     pos.x = -0.1;
     pos.y = -0.8;
+    float x1 = -0.04;
+    float y1 = -0.5;
     tab = get_map();
     GLFWwindow* window;
     glfwSetErrorCallback(error_callback);
@@ -55,7 +130,7 @@ int main(void)
         exit(EXIT_FAILURE);
     }
     glfwMakeContextCurrent(window);
-    glfwSwapInterval(1);
+    glfwSwapInterval(0);
     glfwSetKeyCallback(window, key_callback);
     while (!glfwWindowShouldClose(window))
     {
@@ -80,6 +155,10 @@ int main(void)
         glColor3f(0.f, 9.f, 9.f);
         glVertex2d(1, 1);
         glEnd();
+
+        movement = moveCircle(&movement);
+        glEnd();
+
         aff_ship(pos);
         tab = aff_brick(tab);
         glfwSwapBuffers(window);
