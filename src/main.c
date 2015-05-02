@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:49:20 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 19:41:57 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 21:30:07 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ int main(void)
         glBegin(GL_QUADS);
         glColor3f(9.f, 9.f, 9.f);
         glVertex2d(-1, 1);
-        glColor3f(9.f, 9.f, 9.f);
+        glColor3f(9.f, 0.f, 9.f);
         glVertex2d(-1, -1);
-        glColor3f(9.f, 9.f, 9.f);
+        glColor3f(9.f, 9.f, 0.f);
         glVertex2d(1, -1);
-        glColor3f(9.f, 9.f, 9.f);
+        glColor3f(0.f, 9.f, 9.f);
         glVertex2d(1, 1);
         glEnd();
         aff_ship(pos);

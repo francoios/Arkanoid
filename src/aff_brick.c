@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:02:40 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 18:32:41 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/02 22:00:25 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,39 +30,39 @@ void		get_brick(float y, float x, char c, float f, float e)
 	if (c == '2')
 	{
 		glBegin(GL_QUADS);
-		glColor3f(0.f, 1.f, 0.f);
+		glColor3f(0.f, 10.f, 0.f);
 		glVertex2d(-x, -y);
-		glColor3f(0.f, 1.f, 0.f);
+		glColor3f(10.f, 1.f, 10.f);
 		glVertex2d(-x, -y + -e/100 * 98);
-		glColor3f(0.f, 1.f, 0.f);
+		glColor3f(0.f, 10.f, 0.f);
 		glVertex2d(-x + -f/100 * 90, -y + -e/100 * 98);
-		glColor3f(0.f, 1.f, 0.f);
+		glColor3f(10.f, 1.f, 10.f);
 		glVertex2d(-x + -f/100 * 90, -y);
 		glEnd();
 	}
 	if (c == '3')
 	{
 		glBegin(GL_QUADS);
-		glColor3f(1.f, 1.f, 0.f);
+		glColor3f(5.3f, 200.f, 0.3f);
 		glVertex2d(-x, -y);
-		glColor3f(1.f, 1.f, 0.f);
+		glColor3f(0.f, 0.3f, 5.f);
 		glVertex2d(-x, -y + -e/100 * 98);
-		glColor3f(1.f, 1.f, 0.f);
+		glColor3f(5.3f, 200.f, 0.3f);
 		glVertex2d(-x + -f/100 * 90, -y + -e/100 * 98);
-		glColor3f(1.f, 1.f, 0.f);
+		glColor3f(0.f, 0.9f, 5.f);
 		glVertex2d(-x + -f/100 * 90, -y);
 		glEnd();
 	}
 	if (c == '4')
 	{
 		glBegin(GL_QUADS);
-		glColor3f(0.f, 1.f, 1.f);
+		glColor3f(4.f, 1.f, 1.f);
 		glVertex2d(-x, -y);
-		glColor3f(0.f, 1.f, 1.f);
+		glColor3f(1.f, 0.f, 1.f);
 		glVertex2d(-x, -y + -e/100 * 98);
-		glColor3f(0.f, 1.f, 1.f);
+		glColor3f(6.f, 0.f, 1.f);
 		glVertex2d(-x + -f/100 * 90, -y + -e/100 * 98);
-		glColor3f(0.f, 1.f, 1.f);
+		glColor3f(0.3f, 6.f, 1.f);
 		glVertex2d(-x + -f/100 * 90, -y);
 		glEnd();
 	}
