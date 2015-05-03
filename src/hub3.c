@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 18:19:03 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 18:53:54 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 20:16:21 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			*ft_get_lenght(char **map)
 	int *t;
 
 	t = (int*)malloc(sizeof(int) * 3);
-
 	t[0] = 0;
 	while (map[t[0]][0] != '\0')
 	{

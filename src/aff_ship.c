@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:02:51 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 21:35:37 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 20:12:37 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void		aff_ship(t_coord pos)
 	glColor3f(0.2f, 04.2f, 0.2f);
 	glVertex2d(pos.x, pos.y - 0.05f);
 	glColor3f(0.2f, 0.2f, 4.2f);
-	glVertex2d(pos.x -0.3f, pos.y -0.05f);
+	glVertex2d(pos.x - 0.3f, pos.y - 0.05f);
 	glColor3f(4.3f, 0.3f, 0.3f);
-	glVertex2d(pos.x -0.3f, pos.y);
+	glVertex2d(pos.x - 0.3f, pos.y);
 	glEnd();
 }

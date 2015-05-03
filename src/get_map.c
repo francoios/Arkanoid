@@ -6,16 +6,16 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:13:43 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 18:25:48 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 20:13:13 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_arkanoid.h"
 
-char		**get_map()
+char		**get_map(void)
 {
-	char *line;
-	char **tab;
+	char	*line;
+	char	**tab;
 	int		fd;
 	int		i;
 
