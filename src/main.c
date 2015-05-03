@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:49:20 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 12:03:20 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 12:48:03 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void  drawCircle(float x1, float y1)
 
 t_circlePos     moveCircle(t_circlePos *movement)
 {
-    printf("before x circle = %f\n", movement->xPos);
+//    printf("before x circle = %f\n", movement->xPos);
 
     movement->xPos = movement->xPos + movement->xVec;
 
-    printf("after x circle = %f\n", movement->xPos);
-    printf("after x circle = %f\n", movement->xPos);
+//    printf("after x circle = %f\n", movement->xPos);
+//    printf("after x circle = %f\n", movement->xPos);
 
     movement->yPos = movement->yPos + movement->yVec;
 
@@ -74,31 +74,58 @@ t_circlePos     moveCircle(t_circlePos *movement)
 t_circlePos     calculColision(t_circlePos *movement, int direction)
 {
     printf("direction = %d\n", direction);
+    printf("xvec = %f yvec = %f\n", movement->xVec, movement->yVec);
     if (direction == 1)
     {
-        printf("qbc\n");
-        printf("xvec = %f yvec = %f\n", movement->xVec, movement->yVec);
+//        printf("qbc\n");
         movement->xVec = movement->xVec * -1;
-        printf("pas de la merde\n");
+//        printf("pas de la merde\n");
     }
     if (direction == 2)
     {
-        printf("def\n");
+//        printf("def\n");
         movement->yVec = movement->yVec * -1;
     }
     if (direction == 3)
     {
-        printf("ghi\n");
+//        printf("ghi\n");
         movement->xVec = movement->xVec * -1;
     }
     if (direction == 4)
     {
-        printf("jkl\n");
+//        printf("jkl\n");
         movement->yVec = movement->yVec * -1;
     }
     return (*movement);
 }
 
+t_circlePos     calculColision2(t_circlePos **movement, int direction)
+{
+    printf("direction = %d\n", direction);
+    // printf("xvec = %f yvec = %f\n", movement->xVec, movement->yVec);
+    if (direction == 1)
+    {
+//        printf("qbc\n");
+        (*movement)->xVec = (*movement)->xVec * -1;
+//        printf("pas de la merde\n");
+    }
+    if (direction == 2)
+    {
+//        printf("def\n");
+        (*movement)->yVec = (*movement)->yVec * -1;
+    }
+    if (direction == 3)
+    {
+//        printf("ghi\n");
+        (*movement)->xVec = (*movement)->xVec * -1;
+    }
+    if (direction == 4)
+    {
+//        printf("jkl\n");
+        (*movement)->yVec = (*movement)->yVec * -1;
+    }
+    return (**movement);
+}
 
 int main(void)
 {

@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:56:04 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 11:38:53 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 12:45:55 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ char		**get_map();
 void		get_brick(float x, float y, char c, float e, float f);
 char		**aff_brick(char **map);
 void		aff_ship(t_coord pos);
+t_circlePos     calculColision2(t_circlePos **movement, int direction);
+t_circlePos     calculColision(t_circlePos *movement, int direction);
+
+
 char		**ft_check(char **tab, t_circlePos *movement);
 char		**check_colision_map(char **tab, t_circlePos *movement);
 

@@ -6,15 +6,17 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:02:40 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 22:00:25 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 13:01:06 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_arkanoid.h"
 
+t_coord posb;
+
 void		get_brick(float y, float x, char c, float f, float e)
 {
-	if (c == '1')
+	if (c == '4')
 	{
 		glBegin(GL_QUADS);
 		glColor3f(0.f, 0.f, 0.f);
@@ -27,7 +29,7 @@ void		get_brick(float y, float x, char c, float f, float e)
 		glVertex2d(-x + -f, -y);
 		glEnd();
 	}
-	if (c == '2')
+	if (c == '1')
 	{
 		glBegin(GL_QUADS);
 		glColor3f(0.f, 10.f, 0.f);
@@ -40,7 +42,7 @@ void		get_brick(float y, float x, char c, float f, float e)
 		glVertex2d(-x + -f/100 * 90, -y);
 		glEnd();
 	}
-	if (c == '3')
+	if (c == '2')
 	{
 		glBegin(GL_QUADS);
 		glColor3f(5.3f, 200.f, 0.3f);
@@ -53,7 +55,7 @@ void		get_brick(float y, float x, char c, float f, float e)
 		glVertex2d(-x + -f/100 * 90, -y);
 		glEnd();
 	}
-	if (c == '4')
+	if (c == '3')
 	{
 		glBegin(GL_QUADS);
 		glColor3f(4.f, 1.f, 1.f);
@@ -90,6 +92,8 @@ char		**aff_brick(char **map)
 	i = 0;
 	c = ((float)2/bmax);
 	d = ((float)1/imax);
+	posb.bmax = bmax;
+	posb.imax = imax;
 	while (map[i][0] != '\0')
 	{
 		b = 0;
@@ -102,6 +106,61 @@ char		**aff_brick(char **map)
 			b++;
 		}
 		i++;
+	}
+	return (map);
+}
+
+char		**ft_check(char **tab, t_circlePos *movement)
+{
+	int		i = 0;
+		printf("mov.ypos = %f\n  posb.ypos_b = %f\n mov.xpos = %f\n posb.xpos = %f\n posb.xpos -f = %f\n posb.f%f\n", movement->yPos, posb.ypos_b, movement->xPos, posb.xpos_b, posb.ypos_b - posb.f, posb.f);
+
+	if (movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -posb.e &&movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.f)
+	{
+		i = 4;
+		calculColision2(&movement, i);
+		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+	}
+	else if (movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.f &&movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -posb.e)
+	{
+		i = 1;
+		calculColision(movement, i);
+		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+	}
+	else if (movement->xPos <= -posb.xpos_b - posb.f && movement->xPos >= -posb.xpos_b && movement->yPos <= -posb.ypos_b && movement->xPos >= -posb.ypos_b -posb.e)
+	{
+		i = 3;
+		calculColision(movement, i);
+		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+	}
+	else if (movement->yPos <= -posb.ypos_b - posb.e && movement->yPos >= -posb.ypos_b &&movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.f)
+	{
+		i = 2;
+		calculColision(movement, i);
+		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+	}
+	return (tab);
+}
+
+char		**check_colision_map(char **map, t_circlePos *movement)
+{
+	posb.i = 0;
+	posb.e = ((float)2/posb.bmax);
+	posb.f = ((float)1/posb.imax);
+	while (map[posb.i][0] != '\0')
+	{
+		posb.b = 0;
+		while (map[posb.i][posb.b])
+		{
+			if (map[posb.i] && map[posb.i][posb.b] && map[posb.i][posb.b] > '0' && map[posb.i][posb.b] < '4')
+			{
+				posb.ypos_b = (float)((float)posb.i/(float)posb.imax)*2-1.0;;
+				posb.xpos_b = (float)((float)posb.b/(float)posb.bmax)*2-1.0;
+				map = ft_check(map, movement);
+			}
+			posb.b++;
+		}
+		posb.i++;
 	}
 	return (map);
 }
