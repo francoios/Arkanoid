@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:49:20 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 11:04:30 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 12:03:20 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,6 @@ void  drawCircle(float x1, float y1)
     }
 }
 
-typedef struct   s_circlePos
-{
-    float       xPos;
-    float       yPos;
-    float       xVec;
-    float       yVec;
-    float       rad;
-}               t_circlePos;
-
 t_circlePos     moveCircle(t_circlePos *movement)
 {
     printf("before x circle = %f\n", movement->xPos);
@@ -82,20 +73,27 @@ t_circlePos     moveCircle(t_circlePos *movement)
 
 t_circlePos     calculColision(t_circlePos *movement, int direction)
 {
+    printf("direction = %d\n", direction);
     if (direction == 1)
     {
+        printf("qbc\n");
+        printf("xvec = %f yvec = %f\n", movement->xVec, movement->yVec);
         movement->xVec = movement->xVec * -1;
+        printf("pas de la merde\n");
     }
     if (direction == 2)
     {
+        printf("def\n");
         movement->yVec = movement->yVec * -1;
     }
     if (direction == 3)
     {
+        printf("ghi\n");
         movement->xVec = movement->xVec * -1;
     }
     if (direction == 4)
     {
+        printf("jkl\n");
         movement->yVec = movement->yVec * -1;
     }
     return (*movement);
@@ -155,8 +153,10 @@ int main(void)
         glColor3f(0.f, 9.f, 9.f);
         glVertex2d(1, 1);
         glEnd();
-
+        aff_ship(pos);
+        tab = aff_brick(tab);
         movement = moveCircle(&movement);
+        tab = check_colision_map(tab, &movement);
         if (movement.xPos > 0.92)
             calculColision(&movement, 3);
         if (movement.yPos > 0.92)
@@ -169,11 +169,8 @@ int main(void)
        {
             calculColision(&movement, 4);
        }
-
         glEnd();
 
-        aff_ship(pos);
-        tab = aff_brick(tab);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

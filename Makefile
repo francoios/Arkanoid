@@ -6,7 +6,7 @@
 #    By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/27 20:27:42 by tdemay            #+#    #+#              #
-#    Updated: 2015/05/02 18:24:24 by frcugy           ###   ########.fr        #
+#    Updated: 2015/05/03 11:38:13 by frcugy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCBASE		=	\
 				src/main.c \
 				src/get_map.c \
 				src/aff_brick.c \
-				src/aff_ship.c
+				src/aff_ship.c \
+				src/hub.c
 
 SRCS		=	$(SRCBASE)
 
