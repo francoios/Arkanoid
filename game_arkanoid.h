@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:56:04 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 19:22:30 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 19:42:53 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct   s_circlePos
 }               t_circlePos;
 
 char		**get_map();
-void		get_brick(float x, float y, char c, float e, float f);
+void		get_brick(float x, float y, char c, float e[]);
 void		aff_brick(char **map);
 void		aff_ship(t_coord pos);
 t_circlePos     calculColision2(t_circlePos **movement, int direction);
@@ -79,6 +79,6 @@ float				ft_sqrt2(const float n);
 char		**ft_check(char **tab, t_circlePos *movement);
 char		**check_colision_map(char **tab, t_circlePos *movement);
 
-
+t_coord			posb;
 
 #endif
