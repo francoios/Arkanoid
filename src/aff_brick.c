@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:02:40 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 19:42:42 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 22:05:18 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void			aff_brick(char **map)
 	t = ft_get_lenght(map);
 	c[0] = ((float)2 / t[1]);
 	c[1] = ((float)1 / t[0]);
-	posb.bmax = t[1];
-	posb.imax = t[0];
+	g_b.bmax = t[1];
+	g_b.imax = t[0];
 	t[0] = 0;
 	while (map[t[0]][0] != '\0')
 	{
@@ -45,8 +45,8 @@ void			aff_brick(char **map)
 			if (map[t[0]] && map[t[0]][t[1]] && map[t[0]][t[1]] > '0' &&
 			map[t[0]][t[1]] < '6')
 			{
-				get_brick((float)((float)t[0] / (float)posb.imax) * 2 - 1.0,
-				(float)((float)t[1] / (float)posb.bmax)
+				get_brick((float)((float)t[0] / (float)g_b.imax) * 2 - 1.0,
+				(float)((float)t[1] / (float)g_b.bmax)
 				* 2 - 1.0, map[t[0]][t[1]], c);
 			}
 			t[1]++;
@@ -55,83 +55,83 @@ void			aff_brick(char **map)
 	}
 }
 
-char			**ft_mid_check(char **tab, t_circlePos *movement)
+char			**ft_mid_check(char **tab, t_circlepos *movement)
 {
-	if (movement->xPos <= -posb.xpos_b - posb.e &&
-	movement->xPos >= -posb.xpos_b - ((posb.e / 100) * 110) &&
-	movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b - posb.f)
+	if (movement->xpos <= -g_b.xpos_b - g_b.e &&
+	movement->xpos >= -g_b.xpos_b - ((g_b.e / 100) * 110) &&
+	movement->ypos <= -g_b.ypos_b && movement->ypos >= -g_b.ypos_b - g_b.f)
 	{
 		calculcolision2(movement, 1);
-		if (tab[posb.i][posb.b] != '4')
+		if (tab[g_b.i][g_b.b] != '4')
 		{
 			movement->cnt += 10;
-			tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+			tab[g_b.i][g_b.b] = tab[g_b.i][g_b.b] - 1;
 		}
 	}
-	if (movement->yPos >= -posb.ypos_b - posb.f &&
-	movement->yPos <= -(posb.ypos_b / 100) * 110 &&
-	movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b - posb.e)
+	if (movement->ypos >= -g_b.ypos_b - g_b.f &&
+	movement->ypos <= -(g_b.ypos_b / 100) * 110 &&
+	movement->xpos <= -g_b.xpos_b && movement->xpos >= -g_b.xpos_b - g_b.e)
 	{
 		calculcolision2(movement, 2);
-		if (tab[posb.i][posb.b] != '4')
+		if (tab[g_b.i][g_b.b] != '4')
 		{
 			movement->cnt += 10;
-			tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+			tab[g_b.i][g_b.b] = tab[g_b.i][g_b.b] - 1;
 		}
 	}
 	return (tab);
 }
 
-char			**ft_check(char **tab, t_circlePos *movement)
+char			**ft_check(char **tab, t_circlepos *movement)
 {
-	if (movement->yPos >= -posb.ypos_b &&
-	movement->yPos <= -posb.ypos_b - (posb.f / 100) * -10 &&
-	movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b - posb.e)
+	if (movement->ypos >= -g_b.ypos_b &&
+	movement->ypos <= -g_b.ypos_b - (g_b.f / 100) * -10 &&
+	movement->xpos <= -g_b.xpos_b && movement->xpos >= -g_b.xpos_b - g_b.e)
 	{
 		calculcolision2(movement, 4);
-		if (tab[posb.i][posb.b] != '4')
+		if (tab[g_b.i][g_b.b] != '4')
 		{
 			movement->cnt += 10;
-			tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+			tab[g_b.i][g_b.b] = tab[g_b.i][g_b.b] - 1;
 		}
 	}
-	if (movement->xPos >= -posb.xpos_b &&
-	movement->xPos <= -posb.xpos_b - (posb.e / 100) * -10 &&
-	movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b - posb.f)
+	if (movement->xpos >= -g_b.xpos_b &&
+	movement->xpos <= -g_b.xpos_b - (g_b.e / 100) * -10 &&
+	movement->ypos <= -g_b.ypos_b && movement->ypos >= -g_b.ypos_b - g_b.f)
 	{
 		calculcolision2(movement, 3);
-		if (tab[posb.i][posb.b] != '4')
+		if (tab[g_b.i][g_b.b] != '4')
 		{
 			movement->cnt += 10;
-			tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+			tab[g_b.i][g_b.b] = tab[g_b.i][g_b.b] - 1;
 		}
 	}
 	tab = ft_mid_check(tab, movement);
 	return (tab);
 }
 
-char			**check_colision_map(char **map, t_circlePos *movement)
+char			**check_colision_map(char **map, t_circlepos *movement)
 {
-	posb.i = 0;
-	posb.e = (((float)2 / posb.bmax) / 100) * 98;
-	posb.f = (((float)1 / posb.imax) / 100) * 90;
-	while (map[posb.i][0] != '\0')
+	g_b.i = 0;
+	g_b.e = (((float)2 / g_b.bmax) / 100) * 98;
+	g_b.f = (((float)1 / g_b.imax) / 100) * 90;
+	while (map[g_b.i][0] != '\0')
 	{
-		posb.b = 0;
-		while (map[posb.i][posb.b])
+		g_b.b = 0;
+		while (map[g_b.i][g_b.b])
 		{
-			if (map[posb.i] && map[posb.i][posb.b] &&
-			map[posb.i][posb.b] > '0' && map[posb.i][posb.b] < '5')
+			if (map[g_b.i] && map[g_b.i][g_b.b] &&
+			map[g_b.i][g_b.b] > '0' && map[g_b.i][g_b.b] < '5')
 			{
-				posb.ypos_b = (float)((float)posb.i / (float)posb.imax)
+				g_b.ypos_b = (float)((float)g_b.i / (float)g_b.imax)
 				* 2 - 1.0;
-				posb.xpos_b = (float)((float)posb.b / (float)posb.bmax)
+				g_b.xpos_b = (float)((float)g_b.b / (float)g_b.bmax)
 				* 2 - 1.0;
 				map = ft_check(map, movement);
 			}
-			posb.b++;
+			g_b.b++;
 		}
-		posb.i++;
+		g_b.i++;
 	}
 	return (map);
 }

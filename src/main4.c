@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuardoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 20:30:57 by tuardoui          #+#    #+#             */
-/*   Updated: 2015/05/03 21:27:38 by tuardoui         ###   ########.fr       */
+/*   Updated: 2015/05/03 21:55:41 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,49 +34,58 @@ void			draw_circle(float x1, float y1)
 	glEnd();
 }
 
-void			move_circle(t_circlePos *movement)
+void			windowsizecallback(GLFWwindow *window, int width, int height)
 {
-	movement->xPos = movement->xPos + movement->xVec;
-	movement->yPos = movement->yPos + movement->yVec;
-	draw_circle(movement->xPos, movement->yPos);
-}
-
-void			calculpolision(t_circlePos *movement, int direction)
-{
-	if (direction == 1)
+	if (height < 100)
 	{
-		movement->xVec = movement->xVec * -1;
-	}
-	if (direction == 2)
-	{
-		movement->yVec = movement->yVec * -1;
-	}
-	if (direction == 3)
-	{
-		movement->xVec = movement->xVec * -1;
-	}
-	if (direction == 4)
-	{
-		movement->yVec = movement->yVec * -1;
+		ft_putendl("the window is too small");
+		exit(-1);
 	}
 }
 
-void			calculcolision2(t_circlePos *movement, int direction)
+void			move_circle(t_circlepos *movement)
+{
+	movement->xpos = movement->xpos + movement->xvec;
+	movement->ypos = movement->ypos + movement->yvec;
+	draw_circle(movement->xpos, movement->ypos);
+}
+
+void			calculpolision(t_circlepos *movement, int direction)
 {
 	if (direction == 1)
 	{
-		(movement)->xVec = (movement)->xVec * -1;
+		movement->xvec = movement->xvec * -1;
 	}
 	if (direction == 2)
 	{
-		(movement)->yVec = (movement)->yVec * -1;
+		movement->yvec = movement->yvec * -1;
 	}
 	if (direction == 3)
 	{
-		(movement)->xVec = (movement)->xVec * -1;
+		movement->xvec = movement->xvec * -1;
 	}
 	if (direction == 4)
 	{
-		(movement)->yVec = (movement)->yVec * -1;
+		movement->yvec = movement->yvec * -1;
+	}
+}
+
+void			calculcolision2(t_circlepos *movement, int direction)
+{
+	if (direction == 1)
+	{
+		(movement)->xvec = (movement)->xvec * -1;
+	}
+	if (direction == 2)
+	{
+		(movement)->yvec = (movement)->yvec * -1;
+	}
+	if (direction == 3)
+	{
+		(movement)->xvec = (movement)->xvec * -1;
+	}
+	if (direction == 4)
+	{
+		(movement)->yvec = (movement)->yvec * -1;
 	}
 }

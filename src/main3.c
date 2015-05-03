@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuardoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 20:29:37 by tuardoui          #+#    #+#             */
-/*   Updated: 2015/05/03 21:27:13 by tuardoui         ###   ########.fr       */
+/*   Updated: 2015/05/03 21:51:54 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_arkanoid.h"
 
-void	ft_launch(t_circlePos *movement)
+void	ft_launch(t_circlepos *movement)
 {
-	movement->xVec = 0.001f;
-	movement->yVec = 0.001f;
+	movement->xvec = 0.001f;
+	movement->yvec = 0.001f;
 }
 
 void	ft_draw_background(void)
