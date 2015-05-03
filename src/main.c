@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:49:20 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 19:22:38 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 17:59:52 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,10 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         if (pos.x > -0.62)
         pos.x = pos.x - 0.04;
     }
-    // if (key == 333 && action != GLFW_RELEASE)
-    // {
-    //     pos.speed -= 0.0001f;
-    // }
-    // if (key == 334 && action != GLFW_RELEASE)
-    // {
-    //     pos.speed += 0.0001f;
-    // }
+    if (key == 32 && action != GLFW_RELEASE)
+    {
+        pos.space = 1;
+    }
 }
 
 
@@ -65,12 +61,11 @@ void  drawCircle(float x1, float y1)
     glEnd();
 }
 
-t_circlePos     moveCircle(t_circlePos *movement)
+void    moveCircle(t_circlePos *movement)
 {
     movement->xPos = movement->xPos + movement->xVec;
     movement->yPos = movement->yPos + movement->yVec;
     drawCircle(movement->xPos, movement->yPos);
-    return (*movement);
 }
 
 t_circlePos     calculColision(t_circlePos *movement, int direction)
@@ -119,15 +114,25 @@ void    ft_init(t_circlePos *movement)
 {
     movement->xPos = 0.f;
     movement->yPos = -0.7f;
-    movement->xVec = 0.0010f;
-    movement->yVec = 0.0010f;
+    movement->xVec = 0.00f;
+    movement->yVec = 0.00f;
     movement->cnt = 0;
     movement->life = 3;
     pos.x = -0.1;
     pos.y = -0.8;
+    pos.space = 0;
+    pos.replay = 1;
+    pos.breack = 0;
     glfwSetErrorCallback(error_callback);
     if (!glfwInit())
         exit(EXIT_FAILURE);
+}
+
+static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    double xmove;
+    xmove = xpos / 1000;
+    pos.x = xmove;
 }
 
 void    ft_process(GLFWwindow* window)
@@ -135,6 +140,7 @@ void    ft_process(GLFWwindow* window)
     glfwMakeContextCurrent(window);
     glfwSwapInterval(0);
     glfwSetKeyCallback(window, key_callback);
+    glfwSetCursorPosCallback(window, cursor_pos_callback);
     if (!window)
     {
         glfwTerminate();
@@ -142,79 +148,131 @@ void    ft_process(GLFWwindow* window)
     }
 }
 
-int main(void)
+void    ft_launch(t_circlePos *movement)
 {
-    int i;
-    char **tab;
-    float x1;
-    float y1;
-    t_circlePos    movement;
+    movement->xVec = 0.001f;
+    movement->yVec = 0.001f;
+}
 
+void    ft_draw_background(void)
+{
+    glBegin(GL_QUADS);
+    glColor3f(9.f, 9.f, 9.f);
+    glVertex2d(-1, 1);
+    glColor3f(9.f, 0.f, 9.f);
+    glVertex2d(-1, -1);
+    glColor3f(9.f, 9.f, 0.f);
+    glVertex2d(1, -1);
+    glColor3f(0.f, 9.f, 9.f);
+    glVertex2d(1, 1);
+    glEnd();
+}
 
-    i = 0;
-    x1 = -0.04f;
-    y1 = -0.5f;
-    ft_init(&movement);
-    tab = get_map();
-    GLFWwindow* window;
+void    ft_resize(GLFWwindow* window)
+{
+    float   ratio;
+    int     width;
+    int     height;
+    
+    glfwGetFramebufferSize(window, &width, &height);
+    
+    ratio = width / (float) height;
+    glViewport(0, 0, width, height);
+    
+    glClear(GL_COLOR_BUFFER_BIT);
+    glMatrixMode(GL_PROJECTION);
+    
+    glLoadIdentity();
+    glOrtho(-ratio, ratio, 0, 0, 0, 0);
+    
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();    
+}
 
-    window = glfwCreateWindow(1280, 960, "game_arkanoid", NULL, NULL);
+void    ft_life_loose(t_circlePos *movement)
+{
+    movement->xPos = 0;
+    movement->yPos = -0.7f;
+    movement->xVec = 0.00f;
+    movement->yVec = 0.00f;
+    movement->life--;    
+}
 
-    ft_process(window);
-    while (!glfwWindowShouldClose(window))
+int   ft_check_colision_bordure(char **tab, t_circlePos *movement)
+{
+    tab = check_colision_map(tab, movement);
+    if (movement->xPos > 0.92)
+        calculColision(movement, 3);
+    if (movement->yPos > 0.92)
+        calculColision(movement, 2);
+    if (movement->xPos < -0.92)
+       calculColision(movement, 1);
+    if (movement->yPos < -1.10)
     {
-        float ratio;
-        int width, height;
-        glfwGetFramebufferSize(window, &width, &height);
-        ratio = width / (float) height;
-        glViewport(0, 0, width, height);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(-ratio, ratio, 0, 0, 0, 0);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        glBegin(GL_QUADS);
-        glColor3f(9.f, 9.f, 9.f);
-        glVertex2d(-1, 1);
-        glColor3f(9.f, 0.f, 9.f);
-        glVertex2d(-1, -1);
-        glColor3f(9.f, 9.f, 0.f);
-        glVertex2d(1, -1);
-        glColor3f(0.f, 9.f, 9.f);
-        glVertex2d(1, 1);
-        glEnd();
-        aff_ship(pos);
-        aff_brick(tab);
-        chiffre(movement.cnt);
-        ft_draw_life(movement.life);
-        movement = moveCircle(&movement);
-        tab = check_colision_map(tab, &movement);
-        if (movement.xPos > 0.92)
-            calculColision(&movement, 3);
-        if (movement.yPos > 0.92)
-            calculColision(&movement, 2);
-       if (movement.xPos < -0.92)
-           calculColision(&movement, 1);
-       if (movement.yPos < -1.10)
-       {
-            movement.xPos = 0.f;
-            movement.yPos = -0.7f;
-            movement.xVec = 0.0010f;
-            movement.yVec = 0.0010f;
-            movement.life--;
-       }
-       if (movement.life == 0)
-            break;
-       if (movement.yPos <= pos.y && movement.yPos >= pos.y -0.05f &&movement.xPos <= pos.x && movement.xPos >= pos.x -0.3f)
-       {
-            calculColision(&movement, 4);
-       }
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+        ft_life_loose(movement);
+        pos.replay = 1;
     }
+    if (pos.space == 1 && pos.replay == 1)
+    {
+        ft_launch(movement);
+        pos.space = 0;
+        pos.replay = 0;
+        
+    }
+    if (movement->life == 0)
+        pos.breack = 1 ;
+    if (movement->yPos <= pos.y && movement->yPos >= pos.y -0.05f 
+        && movement->xPos <= pos.x && movement->xPos >= pos.x -0.3f)
+        calculColision(movement, 4);
+}
+
+void    ft_exit(GLFWwindow* window)
+{
     glfwDestroyWindow(window);
     glfwTerminate();
     exit(EXIT_SUCCESS);
+}
+
+char**    ft_resize_and_draw_shit(GLFWwindow* window, char **tab)
+{
+    ft_resize(window);
+    ft_draw_background();
+    aff_ship(pos);
+    tab = aff_brick(tab);
+    return (tab);
+}
+
+void    ft_do_some_shit(t_circlePos *movement, char    **tab)
+{
+    chiffre(movement->cnt);
+    ft_draw_life(movement->life);
+    moveCircle(movement);
+    ft_check_colision_bordure(tab, movement);
+}
+
+int main(void)
+{
+    int     i;
+    char    **tab;
+    t_circlePos    movement;
+
+    i = 0;
+    ft_init(&movement);
+    tab = get_map();
+    GLFWwindow* window;
+    window = glfwCreateWindow(1280, 960, "game_arkanoid", NULL, NULL);
+    ft_process(window);
+    glfwPollEvents();
+    while (!glfwWindowShouldClose(window))
+    {
+        tab = ft_resize_and_draw_shit(window, tab);
+        ft_do_some_shit(&movement, tab);
+        if (pos.breack == 1)
+            break ;
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+    ft_exit(window);
     return (0);
 }
+

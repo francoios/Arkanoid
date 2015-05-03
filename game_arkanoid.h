@@ -30,6 +30,9 @@ typedef struct	s_coord
 	float e;
 	float f;
 	float speed;
+	int space;
+	int     replay;
+	int		breack;
 }				t_coord;
 
 
