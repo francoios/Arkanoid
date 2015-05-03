@@ -61,7 +61,7 @@ char			**ft_mid_check(char **tab, t_circlePos *movement)
 	movement->xPos >= -posb.xpos_b - ((posb.e / 100) * 110) &&
 	movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b - posb.f)
 	{
-		calculColision2(&movement, 1);
+		calculcolision2(movement, 1);
 		if (tab[posb.i][posb.b] != '4')
 		{
 			movement->cnt += 10;
@@ -72,7 +72,7 @@ char			**ft_mid_check(char **tab, t_circlePos *movement)
 	movement->yPos <= -(posb.ypos_b / 100) * 110 &&
 	movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b - posb.e)
 	{
-		calculColision2(&movement, 2);
+		calculcolision2(movement, 2);
 		if (tab[posb.i][posb.b] != '4')
 		{
 			movement->cnt += 10;
@@ -88,7 +88,7 @@ char			**ft_check(char **tab, t_circlePos *movement)
 	movement->yPos <= -posb.ypos_b - (posb.f / 100) * -10 &&
 	movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b - posb.e)
 	{
-		calculColision2(&movement, 4);
+		calculcolision2(movement, 4);
 		if (tab[posb.i][posb.b] != '4')
 		{
 			movement->cnt += 10;
@@ -99,7 +99,7 @@ char			**ft_check(char **tab, t_circlePos *movement)
 	movement->xPos <= -posb.xpos_b - (posb.e / 100) * -10 &&
 	movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b - posb.f)
 	{
-		calculColision2(&movement, 3);
+		calculcolision2(movement, 3);
 		if (tab[posb.i][posb.b] != '4')
 		{
 			movement->cnt += 10;

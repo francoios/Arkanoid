@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   game_arkanoid.h                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/02 09:56:04 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 19:42:53 by frcugy           ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   game_arkanoid.h									:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: frcugy <frcugy@student.42.fr>			  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2015/05/02 09:56:04 by frcugy			#+#	#+#			 */
+/*   Updated: 2015/05/03 19:42:53 by frcugy		   ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 
@@ -33,21 +33,21 @@ typedef struct	s_coord
 	float f;
 	float speed;
 	int space;
-	int     replay;
+	int	 replay;
 	int		breack;
 }				t_coord;
 
 
 typedef struct   s_circlePos
 {
-    float       xPos;
-    float       yPos;
-    float       xVec;
-    float       yVec;
-    float       rad;
-    int			cnt;
-    int			life;
-}               t_circlePos;
+	float	   xPos;
+	float	   yPos;
+	float	   xVec;
+	float	   yVec;
+	float	   rad;
+	int			cnt;
+	int			life;
+}			   t_circlePos;
 
 t_coord pos;
 
@@ -55,8 +55,7 @@ char		**get_map();
 void		get_brick(float x, float y, char c, float e[]);
 void		aff_brick(char **map);
 void		aff_ship(t_coord pos);
-t_circlePos     calculColision2(t_circlePos **movement, int direction);
-t_circlePos     calculColision(t_circlePos *movement, int direction);
+
 void chiffre_1(float x, float y, int i);
 void	chiffre(int nb);
 void c_1(float x, float y);
@@ -75,24 +74,24 @@ int				*ft_get_lenght(char **map);
 
 //main.c
 static void error_callback(int error, const char* description);
-void    ft_init(t_circlePos *movement);
-void    ft_process(GLFWwindow* window);
+void	ft_init(t_circlePos *movement);
+void	ft_process(GLFWwindow* window);
 static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos);
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-void    ft_process(GLFWwindow* window);
+void	ft_process(GLFWwindow* window);
 
 //main4.c
-void    ft_init(t_circlePos *movement);
-t_circlePos     calculColision2(t_circlePos **movement, int direction);
-t_circlePos     calculColision(t_circlePos *movement, int direction);
-void    moveCircle(t_circlePos *movement);
-void  drawCircle(float x1, float y1);
+void	ft_init(t_circlePos *movement);
+void			calculcolision2(t_circlePos *movement, int direction);
+void			calculpolision(t_circlePos *movement, int direction);
+void	moveCircle(t_circlePos *movement);
+void  drawcircle(float x1, float y1);
 
 // main3.c
 void		ft_resize(GLFWwindow* window);
 void   		ft_draw_background(void);
-void    	ft_launch(t_circlePos *movement);
-void    	ft_process(GLFWwindow* window);
+void		ft_launch(t_circlePos *movement);
+void		ft_process(GLFWwindow* window);
 static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos);
 
 // main2.c
