@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:56:04 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 12:45:55 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 15:44:08 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_coord
 	int bmax;
 	float e;
 	float f;
+	float speed;
 }				t_coord;
 
 

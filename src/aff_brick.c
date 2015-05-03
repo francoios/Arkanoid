@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:02:40 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 15:04:01 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 16:17:45 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,28 +113,32 @@ char		**aff_brick(char **map)
 char		**ft_check(char **tab, t_circlePos *movement)
 {
 	int		i = 0;
-		printf("mov.ypos = %f\n  posb.ypos_b = %f\n mov.xpos = %f\n posb.xpos = %f\n posb.xpos -f = %f\n posb.f%f\n posb.e %f\n", movement->yPos, posb.ypos_b, movement->xPos, posb.xpos_b, posb.ypos_b - posb.f, posb.f, (posb.e/100)*90);
+	//	printf("mov.ypos = %f\n  posb.ypos_b = %f\n mov.xpos = %f\n posb.xpos = %f\n posb.xpos -f = %f\n posb.f%f\n posb.e %f\n", movement->yPos, posb.ypos_b, movement->xPos, posb.xpos_b, posb.ypos_b - posb.f, posb.f, (posb.e/100)*90);
 
-	if (movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -(posb.f/100)*10 &&movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.e)
+	if (movement->yPos >= -posb.ypos_b && movement->yPos <= -posb.ypos_b -(posb.f/100)*-10 &&movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.e)
 	{
+		printf("detecte au haut\n");
 		i = 4;
 		calculColision2(&movement, i);
 		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
 	}
-	if (movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -(posb.e/100)*10 &&movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -posb.f)
+	if (movement->xPos >= -posb.xpos_b && movement->xPos <= -posb.xpos_b -(posb.e/100)*-10 &&movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -posb.f)
 	{
+		printf("detecte au droite\n");
 		i = 3;
 		calculColision2(&movement, i);
 		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
 	}
-	if (movement->xPos >= -posb.xpos_b - posb.e && movement->xPos <= -posb.xpos_b -((posb.e/100)*90) && movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -posb.f)
+	if (movement->xPos <= -posb.xpos_b - posb.e && movement->xPos >= -posb.xpos_b -((posb.e/100)*110) && movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -posb.f)
 	{
+		printf("detecte a gauche\n");
 		i = 1;
 		calculColision2(&movement, i);
 		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
 	}
-	if (movement->yPos >= -posb.ypos_b - posb.f && movement->yPos <= -(posb.ypos_b/100)*90 &&movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.e)
+	if (movement->yPos >= -posb.ypos_b - posb.f && movement->yPos <= -(posb.ypos_b/100)*110 &&movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.e)
 	{
+		printf("detecte a dessous\n");
 		i = 2;
 		calculColision2(&movement, i);
 		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
