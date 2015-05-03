@@ -43,85 +43,52 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     // {
     //     pos.speed += 0.0001f;
     // }
-    printf("%d\n", key);
-}
 
-float   **getXY(float x1, flaot x2)
-{
-    float   **tab;
-    double  radius;
-    int     i;
-    float   angle;
-
-    radius = 0.020;
-    angle = 0.0f;
-    i = 0;
-    while (angle < 2 * 3.14257)
-    {
-        tab[i][0] = x1 + sin(angle)*radius;
-        tab[i][1] = y1 + cos(angle)*radius;
-        angle += 0.001;
-    }
-    return (tab);
 }
 
 void  drawCircle(float x1, float y1)
 {
     float x2,y2;
     float angle;
-    double radius = 0.010;
+    double radius = 0.040;
 
     glColor3f(0, 0, 0);
-
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(x1,y1);
-
-    for (angle=0.0f; angle < 2 * 3.14257; angle += 0.001)
+    angle = 0.0f;
+    while (angle < 2 * 3.14159)
     {
-        x2 = x1 + sin(angle)*radius;
-        y2 = y1 + cos(angle)*radius;
+        x2 = x1 + sin(angle) * radius;
+        y2 = y1 + cos(angle) * radius;
         glVertex2f(x2,y2);
+        angle += 0.001;
     }
 }
 
 t_circlePos     moveCircle(t_circlePos *movement)
 {
-//    printf("before x circle = %f\n", movement->xPos);
-
     movement->xPos = movement->xPos + movement->xVec;
-
-//    printf("after x circle = %f\n", movement->xPos);
-//    printf("after x circle = %f\n", movement->xPos);
-
     movement->yPos = movement->yPos + movement->yVec;
-
     drawCircle(movement->xPos, movement->yPos);
     return (*movement);
 }
 
 t_circlePos     calculColision(t_circlePos *movement, int direction)
 {
-    //printf("direction = %d\n", direction);
-    //printf("xvec = %f yvec = %f\n", movement->xVec, movement->yVec);
     if (direction == 1)
     {
-//        printf("qbc\n");
         movement->xVec = movement->xVec * -1;
-//        printf("pas de la merde\n");
     }
     if (direction == 2)
     {
-//        printf("def\n");
         movement->yVec = movement->yVec * -1;
     }
     if (direction == 3)
     {
-//        printf("ghi\n");
         movement->xVec = movement->xVec * -1;
     }
     if (direction == 4)
     {
-//        printf("jkl\n");
         movement->yVec = movement->yVec * -1;
     }
     return (*movement);
@@ -129,61 +96,69 @@ t_circlePos     calculColision(t_circlePos *movement, int direction)
 
 t_circlePos     calculColision2(t_circlePos **movement, int direction)
 {
-    // printf("xvec = %f yvec = %f\n", movement->xVec, movement->yVec);
     if (direction == 1)
     {
-        printf("gauche\n\n");
         (*movement)->xVec = (*movement)->xVec * -1;
-//        printf("pas de la merde\n");
     }
     if (direction == 2)
     {
-        printf("dessous\n\n");
         (*movement)->yVec = (*movement)->yVec * -1;
     }
     if (direction == 3)
     {
-        printf("droite\n\n");
         (*movement)->xVec = (*movement)->xVec * -1;
     }
     if (direction == 4)
     {
-        printf("dessus\n\n");
         (*movement)->yVec = (*movement)->yVec * -1;
     }
     return (**movement);
+}
+
+void    ft_init(t_circlePos *movement)
+{
+    movement->xPos = 0.f;
+    movement->yPos = -0.7f;
+    movement->xVec = 0.00019f;
+    movement->yVec = 0.00019f;
+    pos.x = -0.1;
+    pos.y = -0.8;
+    glfwSetErrorCallback(error_callback);
+    if (!glfwInit())
+        exit(EXIT_FAILURE);
+}
+
+void    ft_process(GLFWwindow* window)
+{
+    glfwMakeContextCurrent(window);
+    glfwSwapInterval(0);
+    glfwSetKeyCallback(window, key_callback);
+    if (!window)
+    {
+        glfwTerminate();
+        exit(EXIT_FAILURE);
+    }
 }
 
 int main(void)
 {
     int i;
     char **tab;
+    float x1;
+    float y1;
     t_circlePos    movement;
 
-    movement.xPos = 0.f;
-    movement.yPos = -0.7f;
-    movement.xVec = 0.00019f;
-    movement.yVec = 0.00019f;
 
     i = 0;
-    pos.x = -0.1;
-    pos.y = -0.8;
-    float x1 = -0.04;
-    float y1 = -0.5;
+    x1 = -0.04f;
+    y1 = -0.5f;
+    ft_init(&movement);
     tab = get_map();
     GLFWwindow* window;
-    glfwSetErrorCallback(error_callback);
-    if (!glfwInit())
-        exit(EXIT_FAILURE);
+    
     window = glfwCreateWindow(1280, 960, "game_arkanoid", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        exit(EXIT_FAILURE);
-    }
-    glfwMakeContextCurrent(window);
-    glfwSwapInterval(0);
-    glfwSetKeyCallback(window, key_callback);
+    
+    ft_process(window);
     while (!glfwWindowShouldClose(window))
     {
         float ratio;
