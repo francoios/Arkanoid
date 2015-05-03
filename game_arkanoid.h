@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:56:04 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 17:29:07 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 19:22:30 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct   s_circlePos
 
 char		**get_map();
 void		get_brick(float x, float y, char c, float e, float f);
-char		**aff_brick(char **map);
+void		aff_brick(char **map);
 void		aff_ship(t_coord pos);
 t_circlePos     calculColision2(t_circlePos **movement, int direction);
 t_circlePos     calculColision(t_circlePos *movement, int direction);
@@ -59,6 +59,14 @@ void c_4(float x, float y);
 void c_5(float x, float y);
 void c_6(float x, float y);
 void c_7(float x, float y);
+void			print_brick_1(float y, float x, float f, float e);
+void			print_brick_2(float y, float x, float f, float e);
+void			print_brick_3(float y, float x, float f, float e);
+void			print_brick_4(float y, float x, float f, float e);
+void			print_brick_5(float y, float x, float f, float e);
+int				*ft_get_lenght(char **map);
+
+
 
 
 char		**ft_check(char **tab, t_circlePos *movement);

@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:49:20 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 17:59:52 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 19:22:38 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     // {
     //     pos.speed += 0.0001f;
     // }
-    printf("%d\n", key);
 }
 
 
@@ -187,7 +186,7 @@ int main(void)
         glVertex2d(1, 1);
         glEnd();
         aff_ship(pos);
-        tab = aff_brick(tab);
+        aff_brick(tab);
         chiffre(movement.cnt);
         ft_draw_life(movement.life);
         movement = moveCircle(&movement);

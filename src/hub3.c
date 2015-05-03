@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   hub3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/02 13:13:43 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 18:25:48 by frcugy           ###   ########.fr       */
+/*   Created: 2015/05/03 18:19:03 by frcugy            #+#    #+#             */
+/*   Updated: 2015/05/03 18:53:54 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game_arkanoid.h"
 
-char		**get_map()
+int			*ft_get_lenght(char **map)
 {
-	char *line;
-	char **tab;
-	int		fd;
-	int		i;
+	int *t;
 
-	i = 0;
-	fd = open("map/map1.txt", O_RDONLY);
-	while (get_next_line(fd, &line))
+	t = (int*)malloc(sizeof(int) * 3);
+
+	t[0] = 0;
+	while (map[t[0]][0] != '\0')
 	{
-		i++;
+		t[1] = 0;
+		while (map[t[0]] && map[t[0]][t[1]])
+		{
+			t[1]++;
+		}
+		t[0]++;
 	}
-	close(fd);
-	tab = (char**)malloc(sizeof(char*) * i + 2);
-	i = 0;
-	fd = open("map/map1.txt", O_RDONLY);
-	while (get_next_line(fd, &line))
-	{
-		tab[i] = ft_strdup(line);
-		printf("line === %s\n i= %d \n", line, i);
-		i++;
-	}
-	tab[i] = ft_strdup("\0");
-	close(fd);
-	return (tab);
+	return (t);
 }
