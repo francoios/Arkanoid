@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:13:43 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 17:24:12 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 17:53:23 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char		**get_map()
 	close(fd);
 	tab = (char**)malloc(sizeof(char*) * i + 2);
 	i = 0;
-	fd = open("map/map1.txt", O_RDONLY);
+	fd = open("map/map2.txt", O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
 		tab[i] = ft_strdup(line);

@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:56:04 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 15:44:08 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 17:29:07 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct   s_circlePos
     float       xVec;
     float       yVec;
     float       rad;
+    int			cnt;
+    int			life;
 }               t_circlePos;
 
 char		**get_map();
@@ -48,6 +50,15 @@ char		**aff_brick(char **map);
 void		aff_ship(t_coord pos);
 t_circlePos     calculColision2(t_circlePos **movement, int direction);
 t_circlePos     calculColision(t_circlePos *movement, int direction);
+void chiffre_1(float x, float y, int i);
+void	chiffre(int nb);
+void c_1(float x, float y);
+void c_2(float x, float y);
+void c_3(float x, float y);
+void c_4(float x, float y);
+void c_5(float x, float y);
+void c_6(float x, float y);
+void c_7(float x, float y);
 
 
 char		**ft_check(char **tab, t_circlePos *movement);

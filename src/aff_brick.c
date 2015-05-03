@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 13:02:40 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 16:17:45 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 18:08:58 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_coord posb;
 
 void		get_brick(float y, float x, char c, float f, float e)
 {
-	if (c == '4')
+	if (c == '5')
 	{
 		glBegin(GL_QUADS);
 		glColor3f(0.f, 0.f, 0.f);
@@ -39,6 +39,19 @@ void		get_brick(float y, float x, char c, float f, float e)
 		glColor3f(0.f, 10.f, 0.f);
 		glVertex2d(-x + -f/100 * 90, -y + -e/100 * 98);
 		glColor3f(10.f, 1.f, 10.f);
+		glVertex2d(-x + -f/100 * 90, -y);
+		glEnd();
+	}
+	if (c == '4')
+	{
+		glBegin(GL_QUADS);
+		glColor3f(0.f, 16.f, 1.f);
+		glVertex2d(-x, -y);
+		glColor3f(16.f, 1.f, 0.f);
+		glVertex2d(-x, -y + -e/100 * 98);
+		glColor3f(1.f, 16.f, 0.f);
+		glVertex2d(-x + -f/100 * 90, -y + -e/100 * 98);
+		glColor3f(1.f, 1.f, 0.f);
 		glVertex2d(-x + -f/100 * 90, -y);
 		glEnd();
 	}
@@ -99,7 +112,7 @@ char		**aff_brick(char **map)
 		b = 0;
 		while (map[i][b])
 		{
-			if (map[i] && map[i][b] && map[i][b] > '0' && map[i][b] < '5')
+			if (map[i] && map[i][b] && map[i][b] > '0' && map[i][b] < '6')
 			{
 				get_brick((float)((float)i/(float)imax)*2-1.0, (float)((float)b/(float)bmax)*2-1.0, map[i][b], c, d);
 			}
@@ -120,28 +133,44 @@ char		**ft_check(char **tab, t_circlePos *movement)
 		printf("detecte au haut\n");
 		i = 4;
 		calculColision2(&movement, i);
-		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+		if (tab[posb.i][posb.b] != '4')
+		{
+			movement->cnt += 10;
+			tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+		}
 	}
 	if (movement->xPos >= -posb.xpos_b && movement->xPos <= -posb.xpos_b -(posb.e/100)*-10 &&movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -posb.f)
 	{
 		printf("detecte au droite\n");
 		i = 3;
 		calculColision2(&movement, i);
-		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+		if (tab[posb.i][posb.b] != '4')
+		{
+			movement->cnt += 10;
+			tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+		}
 	}
 	if (movement->xPos <= -posb.xpos_b - posb.e && movement->xPos >= -posb.xpos_b -((posb.e/100)*110) && movement->yPos <= -posb.ypos_b && movement->yPos >= -posb.ypos_b -posb.f)
 	{
 		printf("detecte a gauche\n");
 		i = 1;
 		calculColision2(&movement, i);
-		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+		if (tab[posb.i][posb.b] != '4')
+		{
+			movement->cnt += 10;
+			tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+		}
 	}
-	if (movement->yPos >= -posb.ypos_b - posb.f && movement->yPos <= -(posb.ypos_b/100)*110 &&movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.e)
+	if (movement->yPos <= -posb.ypos_b - posb.f && movement->yPos >= -(posb.ypos_b/100)*110 &&movement->xPos <= -posb.xpos_b && movement->xPos >= -posb.xpos_b -posb.e)
 	{
 		printf("detecte a dessous\n");
 		i = 2;
 		calculColision2(&movement, i);
-		tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+		if (tab[posb.i][posb.b] != '4')
+		{
+			movement->cnt += 10;
+			tab[posb.i][posb.b] = tab[posb.i][posb.b] - 1;
+		}
 	}
 	return (tab);
 }
@@ -156,7 +185,7 @@ char		**check_colision_map(char **map, t_circlePos *movement)
 		posb.b = 0;
 		while (map[posb.i][posb.b])
 		{
-			if (map[posb.i] && map[posb.i][posb.b] && map[posb.i][posb.b] > '0' && map[posb.i][posb.b] < '4')
+			if (map[posb.i] && map[posb.i][posb.b] && map[posb.i][posb.b] > '0' && map[posb.i][posb.b] < '5')
 			{
 				posb.ypos_b = (float)((float)posb.i/(float)posb.imax)*2-1.0;;
 				posb.xpos_b = (float)((float)posb.b/(float)posb.bmax)*2-1.0;

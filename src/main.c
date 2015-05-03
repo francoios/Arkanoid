@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:49:20 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 16:58:21 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 17:59:52 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,15 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     // {
     //     pos.speed += 0.0001f;
     // }
-<<<<<<< HEAD
     printf("%d\n", key);
 }
-=======
 
-}
 
->>>>>>> 8ca2a51a2c39eb753c0f0099dbe497cb7eb4ff9e
 void  drawCircle(float x1, float y1)
 {
     float x2,y2;
     float angle;
-    double radius = 0.040;
+    double radius = 0.015;
 
     glColor3f(0, 0, 0);
     glBegin(GL_TRIANGLE_FAN);
@@ -68,6 +64,7 @@ void  drawCircle(float x1, float y1)
         glVertex2f(x2,y2);
         angle += 0.001;
     }
+    glEnd();
 }
 
 t_circlePos     moveCircle(t_circlePos *movement)
@@ -124,8 +121,10 @@ void    ft_init(t_circlePos *movement)
 {
     movement->xPos = 0.f;
     movement->yPos = -0.7f;
-    movement->xVec = 0.00019f;
-    movement->yVec = 0.00019f;
+    movement->xVec = 0.0010f;
+    movement->yVec = 0.0010f;
+    movement->cnt = 0;
+    movement->life = 3;
     pos.x = -0.1;
     pos.y = -0.8;
     glfwSetErrorCallback(error_callback);
@@ -160,9 +159,9 @@ int main(void)
     ft_init(&movement);
     tab = get_map();
     GLFWwindow* window;
-    
+
     window = glfwCreateWindow(1280, 960, "game_arkanoid", NULL, NULL);
-    
+
     ft_process(window);
     while (!glfwWindowShouldClose(window))
     {
@@ -189,7 +188,8 @@ int main(void)
         glEnd();
         aff_ship(pos);
         tab = aff_brick(tab);
-        chiffre(3);
+        chiffre(movement.cnt);
+        ft_draw_life(movement.life);
         movement = moveCircle(&movement);
         tab = check_colision_map(tab, &movement);
         if (movement.xPos > 0.92)
@@ -198,14 +198,20 @@ int main(void)
             calculColision(&movement, 2);
        if (movement.xPos < -0.92)
            calculColision(&movement, 1);
-       if (movement.yPos < -0.92)
-           calculColision(&movement, 4);
-       if (movement.yPos <= pos.y && movement.xPos <= pos.x && movement.xPos >= pos.x -0.3f)
+       if (movement.yPos < -1.10)
+       {
+            movement.xPos = 0.f;
+            movement.yPos = -0.7f;
+            movement.xVec = 0.0010f;
+            movement.yVec = 0.0010f;
+            movement.life--;
+       }
+       if (movement.life == 0)
+            break;
+       if (movement.yPos <= pos.y && movement.yPos >= pos.y -0.05f &&movement.xPos <= pos.x && movement.xPos >= pos.x -0.3f)
        {
             calculColision(&movement, 4);
        }
-        glEnd();
-
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
