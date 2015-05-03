@@ -37,6 +37,25 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     }
 }
 
+float   **getXY(float x1, flaot x2)
+{
+    float   **tab;
+    double  radius;
+    int     i;
+    float   angle;
+
+    radius = 0.020;
+    angle = 0.0f;
+    i = 0;
+    while (angle < 2 * 3.14257)
+    {
+        tab[i][0] = x1 + sin(angle)*radius;
+        tab[i][1] = y1 + cos(angle)*radius;
+        angle += 0.001;
+    }
+    return (tab);
+}
+
 void  drawCircle(float x1, float y1)
 {
     float x2,y2;
