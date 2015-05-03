@@ -16,6 +16,8 @@
 # include "includes/libft.h"
 #include "glfw-3.1.1/include/GLFW/glfw3.h"
 
+
+
 typedef struct	s_coord
 {
 	float x;
@@ -47,6 +49,8 @@ typedef struct   s_circlePos
     int			life;
 }               t_circlePos;
 
+t_coord pos;
+
 char		**get_map();
 void		get_brick(float x, float y, char c, float e[]);
 void		aff_brick(char **map);
@@ -69,7 +73,34 @@ void			print_brick_4(float y, float x, float f, float e);
 void			print_brick_5(float y, float x, float f, float e);
 int				*ft_get_lenght(char **map);
 
+//main.c
+static void error_callback(int error, const char* description);
+void    ft_init(t_circlePos *movement);
+void    ft_process(GLFWwindow* window);
+static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos);
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void    ft_process(GLFWwindow* window);
 
+//main4.c
+void    ft_init(t_circlePos *movement);
+t_circlePos     calculColision2(t_circlePos **movement, int direction);
+t_circlePos     calculColision(t_circlePos *movement, int direction);
+void    moveCircle(t_circlePos *movement);
+void  drawCircle(float x1, float y1);
+
+// main3.c
+void		ft_resize(GLFWwindow* window);
+void   		ft_draw_background(void);
+void    	ft_launch(t_circlePos *movement);
+void    	ft_process(GLFWwindow* window);
+static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos);
+
+// main2.c
+void		ft_do_some_shit(t_circlePos *movement, char  **tab);
+char**		ft_resize_and_draw_shit(GLFWwindow* window, char **tab);
+void		ft_exit(GLFWwindow* window);
+void		ft_life_loose(t_circlePos *movement);
+int   		ft_check_colision_bordure(char **tab, t_circlePos *movement);
 
 // math.c
 static float		ft_sin2(float x, float my_sin);

@@ -30,7 +30,11 @@ SRCBASE		=	\
 				src/hub3.c \
 				src/nombre.c \
 				src/life.c \
-				src/math.c
+				src/math.c \
+				src/main2.c \
+				src/main3.c \
+				src/main4.c \
+				src/main5.c
 
 SRCS		=	$(SRCBASE)
 
