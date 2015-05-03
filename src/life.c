@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 17:20:18 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/03 17:39:41 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 19:01:22 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void  drawCircle2(float x1, float y1)
 
 void		ft_draw_life(int life)
 {
-	printf("%d\n", life);
 	if (life >= 1)
 		drawCircle2(-0.95, -0.95);
 	if (life >= 2)
