@@ -13,7 +13,6 @@
 #include "../game_arkanoid.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 
 
 t_coord pos;
@@ -59,8 +58,8 @@ void  drawCircle(float x1, float y1)
     angle = 0.0f;
     while (angle < 2 * 3.14159)
     {
-        x2 = x1 + sin(angle) * radius;
-        y2 = y1 + cos(angle) * radius;
+        x2 = x1 + ft_sin(angle) * radius;
+        y2 = y1 + ft_cos(angle) * radius;
         glVertex2f(x2,y2);
         angle += 0.001;
     }

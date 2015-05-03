@@ -60,6 +60,13 @@ void c_5(float x, float y);
 void c_6(float x, float y);
 void c_7(float x, float y);
 
+// math.c
+static float		ft_sin2(float x, float my_sin);
+float				ft_sin(float x);
+static float		ft_cos2(float x, float my_cos);
+float				ft_cos(float x);
+float				ft_sqrt2(const float n);
+
 
 char		**ft_check(char **tab, t_circlePos *movement);
 char		**check_colision_map(char **tab, t_circlePos *movement);

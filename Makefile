@@ -27,7 +27,8 @@ SRCBASE		=	\
 				src/aff_ship.c \
 				src/hub.c \
 				src/nombre.c \
-				src/life.c
+				src/life.c \
+				src/math.c
 
 SRCS		=	$(SRCBASE)
 
