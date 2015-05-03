@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:56:04 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 18:22:33 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 11:05:50 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ typedef struct	s_coord
 {
 	float x;
 	float y;
+
+	float
+	float
 }				t_coord;
 
 char		**get_map();

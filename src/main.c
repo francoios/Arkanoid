@@ -6,7 +6,7 @@
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 09:49:20 by frcugy            #+#    #+#             */
-/*   Updated: 2015/05/02 22:59:35 by frcugy           ###   ########.fr       */
+/*   Updated: 2015/05/03 11:04:30 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     if (key == 262 && action != GLFW_RELEASE)
     {
         if (pos.x < 0.91)
-        pos.x += 0.02;
+        pos.x += 0.04;
     }
     if (key == 263 && action != GLFW_RELEASE)
     {
         if (pos.x > -0.62)
-        pos.x = pos.x - 0.02;
+        pos.x = pos.x - 0.04;
     }
 }
 
@@ -157,6 +157,19 @@ int main(void)
         glEnd();
 
         movement = moveCircle(&movement);
+        if (movement.xPos > 0.92)
+            calculColision(&movement, 3);
+        if (movement.yPos > 0.92)
+            calculColision(&movement, 2);
+       if (movement.xPos < -0.92)
+           calculColision(&movement, 1);
+       if (movement.yPos < -0.92)
+           calculColision(&movement, 4);
+       if (movement.yPos <= pos.y && movement.xPos <= pos.x && movement.xPos >= pos.x -0.3f)
+       {
+            calculColision(&movement, 4);
+       }
+
         glEnd();
 
         aff_ship(pos);
